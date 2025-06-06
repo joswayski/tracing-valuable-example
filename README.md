@@ -15,8 +15,9 @@ We chose to use the [.cargo/config.toml](.cargo/config.toml) with the `tracing_u
 cargo run
 ```
 
+## Output
+
 ```json
-// Output
 {
   "timestamp": "2025-06-06T04:26:02.471127Z",
   "level": "INFO",
