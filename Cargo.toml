@@ -1,0 +1,10 @@
+[package]
+name = "tracing-valuable-example"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+tracing = { version = "0.1.41", features = ["valuable"] }
+tracing-subscriber = { version = "0.3.19", features = ["json", "fmt", "valuable"] }
+valuable = { version = "0.1.1", features = ["derive"] }
