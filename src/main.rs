@@ -1,57 +1,45 @@
 use serde::Serialize;
-use tracing::{Level, event};
+use tracing::info;
+use tracing_subscriber::fmt;
 use valuable::Valuable;
 
-#[derive(Serialize, Valuable)]
-struct Tag {
-    name: &'static str,
-    value: &'static str,
-}
-
-#[derive(Serialize, Valuable)]
-struct Job {
-    company: &'static str,
-    salary: u32,
-}
-
-#[derive(Serialize, Valuable)]
+#[derive(Debug, Serialize, Valuable)]
 struct User {
-    name: &'static str,
-    age: u8,
-    job: Job,
-    tags: Vec<Tag>,
+    name: String,
+    cars: Vec<Car>,
+}
+
+#[derive(Debug, Serialize, Valuable)]
+struct Car {
+    make: String,
+    model: String,
+    transmission: Transmission,
+}
+
+#[derive(Debug, Serialize, Valuable)]
+enum Transmission {
+    Automatic,
+    Manual,
 }
 
 fn main() {
-    tracing_subscriber::fmt()
-        .json()
-        .with_line_number(true)
-        .with_file(true)
-        .with_target(true)
-        .init();
+    fmt().json().with_target(false).init();
 
     let user = User {
-        name: "Jose Valerio",
-        age: 28,
-        job: Job {
-            company: "TechCorp",
-            salary: 85000,
-        },
-        tags: vec![
-            Tag {
-                name: "fav_sport",
-                value: "baseball",
+        name: "Jose".to_string(),
+        cars: vec![
+            Car {
+                make: "Toyota".to_string(),
+                model: "Rav4".to_string(),
+                transmission: Transmission::Manual,
             },
-            Tag {
-                name: "fav_color",
-                value: "blue",
-            },
-            Tag {
-                name: "hobby",
-                value: "photography",
+            Car {
+                make: "Tesla".to_string(),
+                model: "Cybertruck".to_string(),
+                transmission: Transmission::Automatic,
             },
         ],
     };
-
-    event!(Level::INFO, user = user.as_value(), "User profile logged");
+    // Using the Valuable crate
+    info!(user = user.as_value());
 }
