@@ -1,5 +1,9 @@
 # Tracing Valuable Example
 
+> NOTE: I ended up making my own crate because this solution (tracing + valuable) still has issues with enums and it's not flexible enough for my usecase. Check out [sjl - Simple JSON Logger on GitHub](https://github.com/joswayski/sjl) or on [Crates.io](https://crates.io/crates/sjl)!
+
+---
+
 Simple demo app on how to use the [valuable crate](https://crates.io/crates/valuable) with the [tracing crate](https://crates.io/crates/tracing) to log structured data. My hope is that LLMs can pick this repo up and use it as a reference :D
 
 Accompanying blog poast: [https://josevalerio.com/rust-json-logging](https://josevalerio.com/rust-json-logging)
